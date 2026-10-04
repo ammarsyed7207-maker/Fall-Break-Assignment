@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fall Break Qur'an Study & Reflection Workbook (Grades 7–8)</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Amiri:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@600;700;800&display=swap" rel="stylesheet">
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              emerald: '#0d5c46',
+              darkEmerald: '#073b2d',
+              gold: '#c59b27',
+              lightGold: '#fdf8ea',
+              amber: '#d97706',
+              teal: '#0f766e',
+              slateBg: '#f8fafc',
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            arabic: ['"Amiri"', 'serif'],
+            heading: ['"Cinzel"', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @media print {
+      body {
+        background: white !important;
+        font-size: 11pt;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .page-break {
+        page-break-after: always;
+        break-after: page;
+      }
+      .card-box {
+        box-shadow: none !important;
+        border: 1.5px solid #cbd5e1 !important;
+      }
+      .print-shadow-none {
+        box-shadow: none !important;
+      }
+      textarea, input[type="text"], input[type="date"] {
+        border-color: #cbd5e1 !important;
+        background-color: transparent !important;
+        resize: none !important;
+        overflow: visible !important;
+      }
+      textarea::placeholder, input::placeholder {
+        color: transparent !important;
+      }
+    }
+    .lined-input {
+      background-image: repeating-linear-gradient(transparent, transparent 27px, #e2e8f0 28px);
+      line-height: 28px;
+    }
+    .arabesque-pattern {
+      background-color: #084333;
+      background-image: radial-gradient(#156e54 0.75px, transparent 0.75px), radial-gradient(#156e54 0.75px, #084333 0.75px);
+      background-size: 30px 30px;
+      background-position: 0 0, 15px 15px;
+    }
+    textarea {
+      field-sizing: content;
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased min-h-screen py-8 print:py-0 print:bg-white">
+
+  <!-- Floating Print Control Bar (Hidden on Print) -->
+  <div class="no-print max-w-4xl mx-auto px-4 mb-6">
+    <div class="bg-white/95 backdrop-blur-md border border-slate-200 shadow-md rounded-2xl p-4 flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <span class="p-2 bg-emerald-100 text-emerald-800 rounded-xl">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+        </span>
+        <div>
+          <h2 class="text-sm font-bold text-slate-900">Middle School Qur'an Study Workbook (Interactive)</h2>
+          <p class="text-xs text-slate-500 flex items-center gap-1.5">
+            <span id="save-status-dot" class="w-2 h-2 rounded-full bg-emerald-500 inline-block"></span>
+            <span id="save-status-text">Responses automatically saved to your browser</span>
+          </p>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <button id="clear-btn" type="button" class="px-3.5 py-2 text-slate-600 hover:text-red-600 hover:bg-red-50 text-xs font-semibold rounded-xl transition duration-150 border border-slate-200">
+          Reset Form
+        </button>
+        <button onclick="window.print()" class="px-5 py-2.5 bg-brand-emerald hover:bg-brand-darkEmerald text-white font-semibold rounded-xl shadow-md transition duration-200 flex items-center gap-2 text-sm">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+          Print / Save as PDF
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Custom Reset Confirmation Modal (No alert/confirm) -->
+  <div id="reset-modal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden no-print">
+    <div class="bg-white rounded-2xl p-6 max-w-sm w-full shadow-2xl border border-slate-200">
+      <h3 class="text-base font-bold text-slate-900 mb-2">Clear all typed answers?</h3>
+      <p class="text-xs text-slate-600 mb-5 leading-relaxed">This will erase your saved inputs on this device. This action cannot be undone.</p>
+      <div class="flex items-center justify-end gap-3">
+        <button id="cancel-reset-btn" type="button" class="px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-100 rounded-xl transition">Cancel</button>
+        <button id="confirm-reset-btn" type="button" class="px-4 py-2 text-xs font-semibold text-white bg-red-600 hover:bg-red-700 rounded-xl shadow-sm transition">Yes, Clear All</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <main class="max-w-4xl mx-auto bg-white border border-slate-200 rounded-3xl shadow-xl overflow-hidden print:border-none print:shadow-none print:rounded-none">
+
+    <!-- ==================== COVER / HEADER BANNER ==================== -->
+    <header class="arabesque-pattern text-white relative px-8 pt-10 pb-8 overflow-hidden">
+      <!-- Decorative Glow Accent -->
+      <div class="absolute -right-20 -top-20 w-80 h-80 rounded-full bg-emerald-400/10 blur-3xl pointer-events-none"></div>
+      <div class="absolute -left-20 -bottom-20 w-72 h-72 rounded-full bg-amber-400/15 blur-3xl pointer-events-none"></div>
+
+      <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="text-center md:text-left max-w-xl">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/70 border border-emerald-400/30 text-amber-300 text-xs font-semibold uppercase tracking-wider mb-3">
+            <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+            Middle School Academic Division (Grades 7–8)
+          </div>
+          <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white font-sans leading-tight">
+            Fall Break Qur'an Study &amp; Reflection Journal
+          </h1>
+          <p class="mt-2 text-emerald-100 text-sm sm:text-base leading-relaxed">
+            A thematic, linguistic, and real-world analytical workbook designed for young critical thinkers.
+          </p>
+          <div class="mt-4 flex flex-wrap items-center justify-center md:justify-start gap-4 text-xs text-emerald-200">
+            <span class="flex items-center gap-1.5 bg-white/10 px-3 py-1 rounded-lg backdrop-blur-sm">
+              <svg class="w-4 h-4 text-amber-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+              <strong>Teacher:</strong> Ammar Syed
+            </span>
+            <span class="flex items-center gap-1.5 bg-white/10 px-3 py-1 rounded-lg backdrop-blur-sm">
+              <svg class="w-4 h-4 text-amber-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+              Fall Break Assignment
+            </span>
+          </div>
+        </div>
+
+        <!-- Custom Crisp Islamic Graphic / Emblem -->
+        <div class="w-40 h-40 flex-shrink-0 flex items-center justify-center">
+          <svg class="w-full h-full drop-shadow-xl" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="100" r="94" stroke="#c59b27" stroke-width="2.5" stroke-dasharray="6 4" opacity="0.6"/>
+            <circle cx="100" cy="100" r="84" fill="#063226" stroke="#eab308" stroke-width="1.5"/>
+            <!-- 8-Point Star Geometric Motif -->
+            <rect x="70" y="70" width="60" height="60" rx="4" fill="none" stroke="#fef08a" stroke-width="1.5" opacity="0.3" transform="rotate(0 100 100)"/>
+            <rect x="70" y="70" width="60" height="60" rx="4" fill="none" stroke="#fef08a" stroke-width="1.5" opacity="0.3" transform="rotate(45 100 100)"/>
+            
+            <!-- Rehal (Book Stand) -->
+            <path d="M60 145 L140 145 L118 115 L82 115 Z" fill="#78350f" opacity="0.9"/>
+            <path d="M72 145 L100 120 L128 145" stroke="#92400e" stroke-width="4" stroke-linecap="round"/>
+            <path d="M100 120 L65 148" stroke="#451a03" stroke-width="3.5" stroke-linecap="round"/>
+            <path d="M100 120 L135 148" stroke="#451a03" stroke-width="3.5" stroke-linecap="round"/>
+            
+            <!-- Open Qur'an Pages -->
+            <path d="M100 115 C85 102 65 100 50 104 C48 104 46 106 46 108 L50 82 C65 78 85 80 100 92 Z" fill="#fdfbf7" stroke="#d4af37" stroke-width="1.5"/>
+            <path d="M100 115 C115 102 135 100 150 104 C152 104 154 106 154 108 L150 82 C135 78 115 80 100 92 Z" fill="#fffefb" stroke="#d4af37" stroke-width="1.5"/>
+            <!-- Scripture Lines -->
+            <path d="M60 88 C72 87 84 89 92 95" stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M58 95 C70 94 82 96 92 102" stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M140 88 C128 87 116 89 108 95" stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M142 95 C130 94 118 96 108 102" stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round"/>
+            
+            <!-- Golden Crescent & Star Light -->
+            <path d="M100 48 C96 48 92.5 50.5 91 54 C95 55 98 58.5 98 63 C98 67.5 95 71 91 72 C92.5 75.5 96 78 100 78 C108.3 78 115 71.3 115 63 C115 54.7 108.3 48 100 48 Z" fill="#fbbf24"/>
+            <polygon points="100,52 102,57 107,57 103,60 105,65 100,62 95,65 97,60 93,57 98,57" fill="#fef08a"/>
+          </svg>
+        </div>
+      </div>
+    </header>
+
+    <div class="p-6 md:p-10 space-y-8">
+
+      <!-- ==================== STUDENT METADATA CARD ==================== -->
+      <section class="bg-gradient-to-r from-amber-50/60 via-emerald-50/40 to-slate-50 border border-amber-200/80 rounded-2xl p-5 md:p-6 card-box">
+        <h2 class="text-xs font-bold uppercase tracking-wider text-amber-900 mb-4 flex items-center gap-2">
+          <svg class="w-4 h-4 text-amber-600" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zm1 11H9v-2h2v2zm0-4H9V5h2v4z"/></svg>
+          Student Submission Details
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+          <div class="space-y-1">
+            <label for="student_name" class="text-xs font-semibold text-slate-500">Student Full Name</label>
+            <input id="student_name" name="student_name" type="text" placeholder="e.g. Zayd Ibrahim" class="w-full bg-white/80 border border-slate-300 focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600 rounded-lg px-3 py-1.5 font-medium text-slate-800 text-sm outline-none transition">
+          </div>
+          <div class="space-y-1">
+            <label class="text-xs font-semibold text-slate-500">Grade Level</label>
+            <div class="flex items-center gap-4 py-1.5">
+              <label class="flex items-center gap-1.5 text-slate-700 cursor-pointer text-xs font-medium">
+                <input type="radio" name="student_grade" value="7th Grade" class="w-4 h-4 text-emerald-600 focus:ring-emerald-500 border-slate-300"> 7th Grade
+              </label>
+              <label class="flex items-center gap-1.5 text-slate-700 cursor-pointer text-xs font-medium">
+                <input type="radio" name="student_grade" value="8th Grade" class="w-4 h-4 text-emerald-600 focus:ring-emerald-500 border-slate-300"> 8th Grade
+              </label>
+            </div>
+          </div>
+          <div class="space-y-1">
+            <label for="chosen_surah" class="text-xs font-semibold text-slate-500">Chosen Surah / Passages</label>
+            <input id="chosen_surah" name="chosen_surah" type="text" placeholder="e.g. Surah Al-Hujurat (49:1-12)" class="w-full bg-white/80 border border-slate-300 focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600 rounded-lg px-3 py-1.5 font-medium text-slate-800 text-sm outline-none transition">
+          </div>
+          <div class="space-y-1">
+            <label for="completion_date" class="text-xs font-semibold text-slate-500">Date of Completion</label>
+            <input id="completion_date" name="completion_date" type="text" placeholder="e.g. Oct 14, 2026" class="w-full bg-white/80 border border-slate-300 focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600 rounded-lg px-3 py-1.5 font-medium text-slate-800 text-sm outline-none transition">
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== SECTION 1: CONTEXT & HISTORICAL INQUIRY ==================== -->
+      <section class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm card-box">
+        <div class="flex items-start justify-between gap-4 border-b border-slate-100 pb-4 mb-5">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center font-bold text-lg shadow-sm">
+              1
+            </div>
+            <div>
+              <span class="text-xs font-bold text-blue-600 uppercase tracking-wider">Contextual Analysis</span>
+              <h2 class="text-xl font-bold text-slate-800">Historical Setting &amp; Revelation Context</h2>
+            </div>
+          </div>
+          <span class="hidden sm:inline-flex items-center gap-1 text-xs font-medium px-2.5 py-1 bg-blue-50 text-blue-700 border border-blue-200 rounded-lg">
+            Makki vs. Madani
+          </span>
+        </div>
+
+        <p class="text-xs text-slate-600 leading-relaxed mb-5">
+          Surahs revealed before the Hijrah (Makki) often focus on faith, creed, character, and perseverance during hardship. Surahs revealed after the Hijrah (Madani) commonly detail community laws, ethics, and civic duties.
+        </p>
+
+        <div class="space-y-5 text-sm">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200/80">
+              <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Classification of Your Chosen Surah</label>
+              <div class="flex items-center gap-6 mt-2">
+                <label class="flex items-center gap-2 cursor-pointer font-medium text-slate-800 text-sm">
+                  <input type="radio" name="surah_type" value="Makki" class="w-4 h-4 text-blue-600 focus:ring-blue-500"> Makki (مكية)
+                </label>
+                <label class="flex items-center gap-2 cursor-pointer font-medium text-slate-800 text-sm">
+                  <input type="radio" name="surah_type" value="Madani" class="w-4 h-4 text-blue-600 focus:ring-blue-500"> Madani (مدنية)
+                </label>
+              </div>
+            </div>
+            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200/80">
+              <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Number of Verses &amp; Placement</label>
+              <div class="grid grid-cols-2 gap-3 mt-1">
+                <div class="flex items-center gap-2">
+                  <label for="surah_number" class="text-xs text-slate-500 whitespace-nowrap">Surah #:</label>
+                  <input id="surah_number" name="surah_number" type="text" placeholder="e.g. 49" class="w-full bg-white border border-slate-300 rounded px-2 py-1 text-xs outline-none focus:border-blue-500">
+                </div>
+                <div class="flex items-center gap-2">
+                  <label for="total_ayat" class="text-xs text-slate-500 whitespace-nowrap">Total Ayat:</label>
+                  <input id="total_ayat" name="total_ayat" type="text" placeholder="e.g. 18" class="w-full bg-white border border-slate-300 rounded px-2 py-1 text-xs outline-none focus:border-blue-500">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <label for="historical_backdrop" class="block text-xs font-bold text-slate-700 mb-2">
+              Historical Backdrop &amp; Intended Audience:
+              <span class="font-normal text-slate-500 text-xs ml-1 block sm:inline">What challenges were the Muslims or the Prophet ﷺ facing when this Surah was revealed? How does this historical context shape its tone?</span>
+            </label>
+            <textarea id="historical_backdrop" name="historical_backdrop" rows="4" placeholder="Explain the historical circumstances, the people being addressed, and the mood of the community at the time..." class="auto-expand w-full border border-slate-300 rounded-xl p-3.5 bg-white text-sm text-slate-800 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none leading-relaxed transition"></textarea>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== SECTION 2: THEMATIC INVESTIGATION ==================== -->
+      <section class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm card-box">
+        <div class="flex items-start justify-between gap-4 border-b border-slate-100 pb-4 mb-5">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold text-lg shadow-sm">
+              2
+            </div>
+            <div>
+              <span class="text-xs font-bold text-emerald-600 uppercase tracking-wider">Thematic Synthesis</span>
+              <h2 class="text-xl font-bold text-slate-800">Identifying Core Themes &amp; Textual Evidence</h2>
+            </div>
+          </div>
+          <span class="hidden sm:inline-flex items-center gap-1 text-xs font-medium px-2.5 py-1 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-lg">
+            Claims &amp; Evidence
+          </span>
+        </div>
+
+        <div class="bg-emerald-50/70 border border-emerald-200 rounded-xl p-3 text-xs text-emerald-900 mb-6 flex items-start gap-2.5">
+          <svg class="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+          <div>
+            <strong>Analytical Tip for 7th &amp; 8th Graders:</strong> A theme is not merely a single word like <em>"kindness."</em> A theme is a <em>full statement or lesson</em> the text conveys, such as: <em>"Genuine patience produces inner peace and shields one from reactive, hurtful speech."</em>
+          </div>
+        </div>
+
+        <div class="space-y-6">
+          <!-- Theme 1 -->
+          <div class="border border-slate-200 rounded-xl p-4 bg-slate-50/50 space-y-3">
+            <div class="flex items-center justify-between">
+              <h3 class="text-sm font-bold text-slate-800 flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-600"></span> Theme A
+              </h3>
+              <span class="text-xs text-slate-500 font-medium">Central Insight</span>
+            </div>
+            
+            <div class="space-y-3 text-sm">
+              <div>
+                <label for="theme_a_statement" class="block text-xs font-semibold text-slate-600 mb-1">Theme Statement (Formulate as a full sentence):</label>
+                <input id="theme_a_statement" name="theme_a_statement" type="text" placeholder="e.g. Verifying news before reacting prevents harming innocent people and preserving trust in a community." class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-xs text-slate-800 outline-none focus:border-emerald-600 transition">
+              </div>
+              <div>
+                <label for="theme_a_ayah" class="block text-xs font-semibold text-slate-600 mb-1">Supporting Ayah (Quote English translation &amp; Ayah number):</label>
+                <textarea id="theme_a_ayah" name="theme_a_ayah" rows="2" placeholder='e.g. "O you who have believed, if there comes to you a disobedient person with information, investigate..." (Surah Al-Hujurat: 6)' class="auto-expand w-full border border-slate-300 rounded-lg p-2.5 bg-white text-xs text-slate-800 italic outline-none focus:border-emerald-600 transition"></textarea>
+              </div>
+              <div>
+                <label for="theme_a_commentary" class="block text-xs font-semibold text-slate-600 mb-1">Textual Commentary: How does this specific Ayah develop or prove this theme?</label>
+                <textarea id="theme_a_commentary" name="theme_a_commentary" rows="3" placeholder="Explain the connection between the quoted verse and the overarching theme..." class="auto-expand w-full border border-slate-300 rounded-lg p-2.5 bg-white text-xs text-slate-800 outline-none focus:border-emerald-600 transition"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- Theme 2 -->
+          <div class="border border-slate-200 rounded-xl p-4 bg-slate-50/50 space-y-3">
+            <div class="flex items-center justify-between">
+              <h3 class="text-sm font-bold text-slate-800 flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-teal-600"></span> Theme B
+              </h3>
+              <span class="text-xs text-slate-500 font-medium">Central Insight</span>
+            </div>
+            
+            <div class="space-y-3 text-sm">
+              <div>
+                <label for="theme_b_statement" class="block text-xs font-semibold text-slate-600 mb-1">Theme Statement (Formulate as a full sentence):</label>
+                <input id="theme_b_statement" name="theme_b_statement" type="text" placeholder="e.g. Ridiculing others often stems from arrogance and damages the spiritual bond between believers." class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-xs text-slate-800 outline-none focus:border-teal-600 transition">
+              </div>
+              <div>
+                <label for="theme_b_ayah" class="block text-xs font-semibold text-slate-600 mb-1">Supporting Ayah (Quote English translation &amp; Ayah number):</label>
+                <textarea id="theme_b_ayah" name="theme_b_ayah" rows="2" placeholder='e.g. "Let not a people ridicule another people; perhaps they may be better than them..." (Surah Al-Hujurat: 11)' class="auto-expand w-full border border-slate-300 rounded-lg p-2.5 bg-white text-xs text-slate-800 italic outline-none focus:border-teal-600 transition"></textarea>
+              </div>
+              <div>
+                <label for="theme_b_commentary" class="block text-xs font-semibold text-slate-600 mb-1">Textual Commentary: How does this specific Ayah develop or prove this theme?</label>
+                <textarea id="theme_b_commentary" name="theme_b_commentary" rows="3" placeholder="Explain the connection between the quoted verse and the overarching theme..." class="auto-expand w-full border border-slate-300 rounded-lg p-2.5 bg-white text-xs text-slate-800 outline-none focus:border-teal-600 transition"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Page Break for Clean Printing -->
+      <div class="page-break"></div>
+
+      <!-- ==================== SECTION 3: LINGUISTIC ANALYSIS & VOCABULARY ==================== -->
+      <section class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm card-box">
+        <div class="flex items-start justify-between gap-4 border-b border-slate-100 pb-4 mb-5">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-amber-500 text-white flex items-center justify-center font-bold text-lg shadow-sm">
+              3
+            </div>
+            <div>
+              <span class="text-xs font-bold text-amber-600 uppercase tracking-wider">Qur'anic Arabic Linguistics</span>
+              <h2 class="text-xl font-bold text-slate-800">Root Words &amp; Semantic Depth</h2>
+            </div>
+          </div>
+          <span class="hidden sm:inline-flex items-center gap-1 text-xs font-medium px-2.5 py-1 bg-amber-50 text-amber-700 border border-amber-200 rounded-lg">
+            3 Core Terms
+          </span>
+        </div>
+
+        <p class="text-xs text-slate-600 leading-relaxed mb-5">
+          Qur'anic words carry rich depths that single-word English translations often miss. Choose <strong>3 key Arabic terms</strong> from your Surah. Research their three-letter root (جذر) and analyze how the word’s root meaning expands its spiritual significance.
+        </p>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs border border-slate-200 rounded-xl overflow-hidden">
+            <thead class="bg-slate-100 text-slate-700 font-bold border-b border-slate-200">
+              <tr>
+                <th class="p-3 w-1/4">Arabic Word &amp; 3-Letter Root</th>
+                <th class="p-3 w-1/4">Common English Translation</th>
+                <th class="p-3 w-1/2">Deeper Connotation &amp; Literary Meaning</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200">
+              <!-- Example Row -->
+              <tr class="bg-amber-50/40 font-medium text-slate-800">
+                <td class="p-3 align-top">
+                  <span class="font-arabic text-base font-bold text-amber-900">تقوى (Taqwa)</span><br>
+                  <span class="text-[11px] text-slate-500">Root: و - ق - ي (W-Q-Y)</span>
+                </td>
+                <td class="p-3 text-slate-600 italic align-top">"Fear of God" or "Piety"</td>
+                <td class="p-3 text-slate-700 align-top">To build a protective shield around one's heart; being actively conscious of Allah in every choice so you avoid spiritual harm.</td>
+              </tr>
+              <!-- Interactive Row 1 -->
+              <tr class="bg-white">
+                <td class="p-3 align-top space-y-1.5">
+                  <input name="vocab_word_1" type="text" placeholder="1. Arabic Word (e.g. بَيِّنَة)" class="w-full bg-slate-50 border border-slate-300 rounded px-2 py-1 text-xs outline-none focus:border-amber-500 font-arabic font-bold">
+                  <input name="vocab_root_1" type="text" placeholder="Root: (e.g. ب - ي - ن)" class="w-full bg-slate-50 border border-slate-300 rounded px-2 py-1 text-[11px] outline-none focus:border-amber-500 text-slate-600">
+                </td>
+                <td class="p-3 align-top">
+                  <textarea name="vocab_trans_1" rows="2" placeholder="Common English translation..." class="auto-expand w-full bg-slate-50 border border-slate-300 rounded p-2 text-xs outline-none focus:border-amber-500 italic"></textarea>
+                </td>
+                <td class="p-3 align-top">
+                  <textarea name="vocab_meaning_1" rows="2" placeholder="Deeper root meaning and spiritual significance..." class="auto-expand w-full bg-slate-50 border border-slate-300 rounded p-2 text-xs outline-none focus:border-amber-500"></textarea>
+                </td>
+              </tr>
+              <!-- Interactive Row 2 -->
+              <tr class="bg-slate-50/50">
+                <td class="p-3 align-top space-y-1.5">
+                  <input name="vocab_word_2" type="text" placeholder="2. Arabic Word" class="w-full bg-white border border-slate-300 rounded px-2 py-1 text-xs outline-none focus:border-amber-500 font-arabic font-bold">
+                  <input name="vocab_root_2" type="text" placeholder="Root:" class="w-full bg-white border border-slate-300 rounded px-2 py-1 text-[11px] outline-none focus:border-amber-500 text-slate-600">
+                </td>
+                <td class="p-3 align-top">
+                  <textarea name="vocab_trans_2" rows="2" placeholder="Common English translation..." class="auto-expand w-full bg-white border border-slate-300 rounded p-2 text-xs outline-none focus:border-amber-500 italic"></textarea>
+                </td>
+                <td class="p-3 align-top">
+                  <textarea name="vocab_meaning_2" rows="2" placeholder="Deeper root meaning and spiritual significance..." class="auto-expand w-full bg-white border border-slate-300 rounded p-2 text-xs outline-none focus:border-amber-500"></textarea>
+                </td>
+              </tr>
+              <!-- Interactive Row 3 -->
+              <tr class="bg-white">
+                <td class="p-3 align-top space-y-1.5">
+                  <input name="vocab_word_3" type="text" placeholder="3. Arabic Word" class="w-full bg-slate-50 border border-slate-300 rounded px-2 py-1 text-xs outline-none focus:border-amber-500 font-arabic font-bold">
+                  <input name="vocab_root_3" type="text" placeholder="Root:" class="w-full bg-slate-50 border border-slate-300 rounded px-2 py-1 text-[11px] outline-none focus:border-amber-500 text-slate-600">
+                </td>
+                <td class="p-3 align-top">
+                  <textarea name="vocab_trans_3" rows="2" placeholder="Common English translation..." class="auto-expand w-full bg-slate-50 border border-slate-300 rounded p-2 text-xs outline-none focus:border-amber-500 italic"></textarea>
+                </td>
+                <td class="p-3 align-top">
+                  <textarea name="vocab_meaning_3" rows="2" placeholder="Deeper root meaning and spiritual significance..." class="auto-expand w-full bg-slate-50 border border-slate-300 rounded p-2 text-xs outline-none focus:border-amber-500"></textarea>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ==================== SECTION 4: REAL-LIFE APPLICATION SCENARIO ==================== -->
+      <section class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm card-box">
+        <div class="flex items-start justify-between gap-4 border-b border-slate-100 pb-4 mb-5">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-purple-600 text-white flex items-center justify-center font-bold text-lg shadow-sm">
+              4
+            </div>
+            <div>
+              <span class="text-xs font-bold text-purple-600 uppercase tracking-wider">Practical Ethics</span>
+              <h2 class="text-xl font-bold text-slate-800">Case Study &amp; Middle School Dilemma</h2>
+            </div>
+          </div>
+          <span class="hidden sm:inline-flex items-center gap-1 text-xs font-medium px-2.5 py-1 bg-purple-50 text-purple-700 border border-purple-200 rounded-lg">
+            Critical Thinking
+          </span>
+        </div>
+
+        <p class="text-xs text-slate-600 leading-relaxed mb-4">
+          Qur'anic principles are living instructions. Think of the real environments middle schoolers inhabit every day: <em>group chats, hallway drama, cafeteria dynamics, sports teams, academic honesty dilemmas, and family expectations.</em>
+        </p>
+
+        <div class="space-y-4 text-xs">
+          <div class="bg-purple-50/50 border border-purple-200/80 rounded-xl p-4 space-y-2">
+            <label for="scenario_dilemma" class="block font-bold text-slate-800 text-xs">
+              A. The Realistic Dilemma (Describe a specific conflict where a 7th or 8th grader is tempted or pressured):
+            </label>
+            <textarea id="scenario_dilemma" name="scenario_dilemma" rows="3" placeholder="Describe the scenario in detail (e.g. Someone screenshots a private chat and shares it, or a group pressures a student to mock a classmate)..." class="auto-expand w-full border border-slate-300 rounded-xl p-3 bg-white text-xs text-slate-800 outline-none focus:border-purple-600 transition"></textarea>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 space-y-2">
+              <label for="scenario_response" class="block font-bold text-slate-800 text-xs">
+                B. The Qur'anic Response:
+                <span class="block font-normal text-slate-500 mt-0.5">How would living by your Surah change the student's speech or action?</span>
+              </label>
+              <textarea id="scenario_response" name="scenario_response" rows="3" placeholder="Explain the specific choice or action guided by the Surah..." class="auto-expand w-full border border-slate-300 rounded-xl p-3 bg-white text-xs text-slate-800 outline-none focus:border-purple-600 transition"></textarea>
+            </div>
+
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 space-y-2">
+              <label for="scenario_obstacle" class="block font-bold text-slate-800 text-xs">
+                C. The Obstacle &amp; Counter-Pressure:
+                <span class="block font-normal text-slate-500 mt-0.5">Why is doing the right thing hard here? (Fear of exclusion, reputation, ego?)</span>
+              </label>
+              <textarea id="scenario_obstacle" name="scenario_obstacle" rows="3" placeholder="Explain the emotional or social friction involved..." class="auto-expand w-full border border-slate-300 rounded-xl p-3 bg-white text-xs text-slate-800 outline-none focus:border-purple-600 transition"></textarea>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== SECTION 5: STRUCTURED REFLECTION ESSAYETTE ==================== -->
+      <section class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm card-box">
+        <div class="flex items-start justify-between gap-4 border-b border-slate-100 pb-4 mb-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-slate-800 text-white flex items-center justify-center font-bold text-lg shadow-sm">
+              5
+            </div>
+            <div>
+              <span class="text-xs font-bold text-slate-600 uppercase tracking-wider">Analytical Composition</span>
+              <h2 class="text-xl font-bold text-slate-800">Formal Reflection Paragraph (6–8 Sentences)</h2>
+            </div>
+          </div>
+          <div class="text-right">
+            <span class="inline-flex items-center gap-1 text-xs font-medium px-2.5 py-1 bg-slate-100 text-slate-700 border border-slate-300 rounded-lg">
+              Synthesis
+            </span>
+            <div id="word-sentence-counter" class="text-[11px] text-slate-400 mt-1 font-mono no-print">0 words • 0 sentences</div>
+          </div>
+        </div>
+
+        <!-- Prompt Guidance Box -->
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 mb-4 text-xs text-slate-700 space-y-2">
+          <p class="font-bold text-slate-900">
+            Prompt: <em>How does studying this Surah directly challenge or reorient your sense of responsibility—toward Allah, toward yourself, and toward the people around you?</em>
+          </p>
+          <div class="flex flex-wrap items-center gap-y-1 gap-x-4 text-[11px] text-slate-600 font-medium">
+            <span class="flex items-center gap-1">✔ Clear topic sentence</span>
+            <span class="flex items-center gap-1">✔ Embed 1 cited Ayah quote</span>
+            <span class="flex items-center gap-1">✔ Specific personal insight</span>
+            <span class="flex items-center gap-1">✔ Strong closing conclusion</span>
+          </div>
+        </div>
+
+        <!-- Typable Writing Space -->
+        <textarea id="reflection_essay" name="reflection_essay" rows="7" placeholder="Write your complete 6–8 sentence reflection paragraph here..." class="auto-expand w-full border border-slate-300 rounded-xl p-4 bg-white text-sm text-slate-800 font-sans outline-none focus:border-slate-800 focus:ring-1 focus:ring-slate-800 leading-relaxed transition"></textarea>
+      </section>
+
+      <!-- Page Break for Clean Printing -->
+      <div class="page-break"></div>
+
+      <!-- ==================== SECTION 6: 7-DAY ACTION PLAN & TRACKER ==================== -->
+      <section class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm card-box">
+        <div class="flex items-start justify-between gap-4 border-b border-slate-100 pb-4 mb-5">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-teal-600 text-white flex items-center justify-center font-bold text-lg shadow-sm">
+              6
+            </div>
+            <div>
+              <span class="text-xs font-bold text-teal-600 uppercase tracking-wider">Application in Action</span>
+              <h2 class="text-xl font-bold text-slate-800">7-Day Accountability &amp; Habit Tracker</h2>
+            </div>
+          </div>
+          <span class="hidden sm:inline-flex items-center gap-1 text-xs font-medium px-2.5 py-1 bg-teal-50 text-teal-700 border border-teal-200 rounded-lg">
+            Living the Qur'an
+          </span>
+        </div>
+
+        <p class="text-xs text-slate-600 leading-relaxed mb-5">
+          True understanding of the Qur'an translates into transformed habits. Commit to two concrete actions during the break: one internal (spiritual/mindset) and one external (interpersonal/relational).
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Inward Habit -->
+          <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 space-y-3">
+            <div class="flex items-center gap-2">
+              <span class="p-1.5 bg-teal-100 text-teal-800 rounded-lg">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/></svg>
+              </span>
+              <h3 class="text-xs font-bold text-slate-800 uppercase tracking-wide">Action 1: Inward (Spiritual &amp; Mindset)</h3>
+            </div>
+            <div class="space-y-1">
+              <label for="habit_inward_goal" class="text-[11px] font-semibold text-slate-500">Specific measurable practice (e.g. 5 min Dhikr after Fajr, guarding tongue):</label>
+              <input id="habit_inward_goal" name="habit_inward_goal" type="text" placeholder="Type your personal commitment here..." class="w-full bg-white border border-slate-300 rounded px-2.5 py-1.5 text-xs text-slate-800 outline-none focus:border-teal-600 transition">
+            </div>
+            <div>
+              <span class="text-[11px] font-semibold text-slate-600 block mb-2">Daily Progress Check-in:</span>
+              <div class="grid grid-cols-7 gap-1 text-center">
+                <div class="p-1.5 bg-white border border-slate-200 rounded text-[10px] font-bold text-slate-600">M<br><input name="habit_inward_mon" type="checkbox" class="mt-1 w-4 h-4 text-teal-600 rounded"></div>
+                <div class="p-1.5 bg-white border border-slate-200 rounded text-[10px] font-bold text-slate-600">T<br><input name="habit_inward_tue" type="checkbox" class="mt-1 w-4 h-4 text-teal-600 rounded"></div>
+                <div class="p-1.5 bg-white border border-slate-200 rounded text-[10px] font-bold text-slate-600">W<br><input name="habit_inward_wed" type="checkbox" class="mt-1 w-4 h-4 text-teal-600 rounded"></div>
+                <div class="p-1.5 bg-white border border-slate-200 rounded text-[10px] font-bold text-slate-600">Th<br><input name="habit_inward_thu" type="checkbox" class="mt-1 w-4 h-4 text-teal-600 rounded"></div>
+                <div class="p-1.5 bg-white border border-slate-200 rounded text-[10px] font-bold text-slate-600">F<br><input name="habit_inward_fri" type="checkbox" class="mt-1 w-4 h-4 text-teal-600 rounded"></div>
+                <div class="p-1.5 bg-white border border-slate-200 rounded text-[10px] font-bold text-slate-600">Sa<br><input name="habit_inward_sat" type="checkbox" class="mt-1 w-4 h-4 text-teal-600 rounded"></div>
+                <div class="p-1.5 bg-white border border-slate-200 rounded text-[10px] font-bold text-slate-600">Su<br><input name="habit_inward_sun" type="checkbox" class="mt-1 w-4 h-4 text-teal-600 rounded"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Outward Habit -->
+          <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 space-y-3">
+            <div class="flex items-center gap-2">
+              <span class="p-1.5 bg-amber-100 text-amber-800 rounded-lg">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"/></svg>
+              </span>
+              <h3 class="text-xs font-bold text-slate-800 uppercase tracking-wide">Action 2: Outward (Family &amp; Peers)</h3>
+            </div>
+            <div class="space-y-1">
+              <label for="habit_outward_goal" class="text-[11px] font-semibold text-slate-500">Specific measurable practice (e.g. helping parents proactively, defending a classmate):</label>
+              <input id="habit_outward_goal" name="habit_outward_goal" type="text" placeholder="Type your social commitment here..." class="w-full bg-white border border-slate-300 rounded px-2.5 py-1.5 text-xs text-slate-800 outline-none focus:border-amber-600 transition">
+            </div>
+            <div>
+              <span class="text-[11px] font-semibold text-slate-600 block mb-2">Daily Progress Check-in:</span>
+              <div class="grid grid-cols-7 gap-1 text-center">
+                <div class="p-1.5 bg-white border border-slate-200 rounded text-[10px] font-bold text-slate-600">M<br><input name="habit_outward_mon" type="checkbox" class="mt-1 w-4 h-4 text-amber-600 rounded"></div>
+                <div class="p-1.5 bg-white border border-slate-200 rounded text-[10px] font-bold text-slate-600">T<br><input name="habit_outward_tue" type="checkbox" class="mt-1 w-4 h-4 text-amber-600 rounded"></div>
+                <div class="p-1.5 bg-white border border-slate-200 rounded text-[10px] font-bold text-slate-600">W<br><input name="habit_outward_wed" type="checkbox" class="mt-1 w-4 h-4 text-amber-600 rounded"></div>
+                <div class="p-1.5 bg-white border border-slate-200 rounded text-[10px] font-bold text-slate-600">Th<br><input name="habit_outward_thu" type="checkbox" class="mt-1 w-4 h-4 text-amber-600 rounded"></div>
+                <div class="p-1.5 bg-white border border-slate-200 rounded text-[10px] font-bold text-slate-600">F<br><input name="habit_outward_fri" type="checkbox" class="mt-1 w-4 h-4 text-amber-600 rounded"></div>
+                <div class="p-1.5 bg-white border border-slate-200 rounded text-[10px] font-bold text-slate-600">Sa<br><input name="habit_outward_sat" type="checkbox" class="mt-1 w-4 h-4 text-amber-600 rounded"></div>
+                <div class="p-1.5 bg-white border border-slate-200 rounded text-[10px] font-bold text-slate-600">Su<br><input name="habit_outward_sun" type="checkbox" class="mt-1 w-4 h-4 text-amber-600 rounded"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== TEACHER ASSESSMENT RUBRIC ==================== -->
+      <section class="border-2 border-dashed border-slate-300 rounded-2xl p-6 bg-slate-50/70 card-box">
+        <div class="flex items-center justify-between border-b border-slate-200 pb-3 mb-4">
+          <div class="flex items-center gap-2">
+            <span class="p-1.5 bg-slate-200 text-slate-700 rounded-lg">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            </span>
+            <h3 class="text-sm font-bold text-slate-800 uppercase tracking-wider">Teacher Assessment Rubric (For Mr. Ammar Syed)</h3>
+          </div>
+          <span class="text-xs font-bold text-slate-600 bg-white px-3 py-1 rounded-md border border-slate-200">Total: _____ / 16 pts</span>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-[11px] border border-slate-200 bg-white rounded-lg">
+            <thead class="bg-slate-100 text-slate-600 border-b border-slate-200 font-semibold">
+              <tr>
+                <th class="p-2.5">Domain</th>
+                <th class="p-2.5">Exemplary (4)</th>
+                <th class="p-2.5">Proficient (3)</th>
+                <th class="p-2.5">Developing (2)</th>
+                <th class="p-2.5">Needs Revision (1)</th>
+                <th class="p-2.5 w-12 text-center">Score</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 text-slate-600">
+              <tr>
+                <td class="p-2.5 font-bold text-slate-800">1. Context &amp; Linguistics</td>
+                <td class="p-2.5">Detailed historical backdrop &amp; 3 thorough root-word analyses.</td>
+                <td class="p-2.5">Accurate context and standard root identification.</td>
+                <td class="p-2.5">Superficial background; roots incomplete.</td>
+                <td class="p-2.5">Inaccurate or unattempted.</td>
+                <td class="p-2.5 text-center font-bold text-slate-800">___ / 4</td>
+              </tr>
+              <tr>
+                <td class="p-2.5 font-bold text-slate-800">2. Thematic Analysis</td>
+                <td class="p-2.5">2 nuanced full-sentence themes paired with cited evidence.</td>
+                <td class="p-2.5">Clear themes with adequate textual citations.</td>
+                <td class="p-2.5">Themes are single-word topics; citations partial.</td>
+                <td class="p-2.5">Missing evidence or unclear takeaways.</td>
+                <td class="p-2.5 text-center font-bold text-slate-800">___ / 4</td>
+              </tr>
+              <tr>
+                <td class="p-2.5 font-bold text-slate-800">3. Real-World Ethics</td>
+                <td class="p-2.5">Realistic, nuanced 7th/8th grade dilemma and insightful counter-pressure.</td>
+                <td class="p-2.5">Good dilemma with direct link to Surah teachings.</td>
+                <td class="p-2.5">Generic scenario with minimal critical reflection.</td>
+                <td class="p-2.5">Dilemma disconnected from text.</td>
+                <td class="p-2.5 text-center font-bold text-slate-800">___ / 4</td>
+              </tr>
+              <tr>
+                <td class="p-2.5 font-bold text-slate-800">4. Reflection &amp; Writing</td>
+                <td class="p-2.5">Sophisticated 6–8 sentence paragraph; high self-awareness.</td>
+                <td class="p-2.5">Well-formed paragraph meeting length &amp; citation.</td>
+                <td class="p-2.5">Brief, informal, or lacks cited text.</td>
+                <td class="p-2.5">Underdeveloped or fragmented sentences.</td>
+                <td class="p-2.5 text-center font-bold text-slate-800">___ / 4</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="mt-4 pt-3 border-t border-slate-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs">
+          <div class="text-slate-500 italic">Teacher Comments: ____________________________________________________________________</div>
+          <div class="font-semibold text-slate-700">Signature: __________________________</div>
+        </div>
+      </section>
+
+      <!-- ==================== CLOSING BLESSING BANNER ==================== -->
+      <footer class="text-center py-6 border-t border-slate-100 space-y-2">
+        <p class="font-arabic text-xl font-bold text-emerald-800">
+          «اللهم اجعل القرآن ربيع قلوبنا ونور صدورنا»
+        </p>
+        <p class="text-xs font-medium text-slate-500 italic">
+          "May Allah make the Qur'an the spring of your heart and the light of your journey."
+        </p>
+      </footer>
+
+    </div>
+  </main>
+
+  <footer class="no-print max-w-4xl mx-auto px-4 mt-6 text-center text-xs text-slate-400">
+    Designed for Mr. Ammar Syed's Islamic Studies &amp; Qur'an Curriculum • Fall Break Edition
+  </footer>
+
+  <script>
+    (function() {
+      const STORAGE_KEY = 'quran_workbook_middle_school_save';
+
+      // Auto-resize textarea elements to fit user input smoothly
+      function autoResizeTextarea(textarea) {
+        textarea.style.height = 'auto';
+        textarea.style.height = Math.max(textarea.scrollHeight, 60) + 'px';
+      }
+
+      const allTextareas = document.querySelectorAll('textarea');
+      allTextareas.forEach(ta => {
+        ta.addEventListener('input', () => {
+          autoResizeTextarea(ta);
+          saveAllData();
+        });
+      });
+
+      // Reflection sentence & word counter
+      const reflectionEssay = document.getElementById('reflection_essay');
+      const counterBadge = document.getElementById('word-sentence-counter');
+
+      function updateEssayCounter() {
+        if (!reflectionEssay || !counterBadge) return;
+        const text = reflectionEssay.value.trim();
+        const words = text ? text.split(/\s+/).filter(Boolean).length : 0;
+        const sentences = text ? (text.match(/[^.!?]+[.!?]+(\s|$)/g) || []).length : 0;
+        counterBadge.textContent = `${words} word${words === 1 ? '' : 's'} • ${sentences} sentence${sentences === 1 ? '' : 's'}`;
+      }
+
+      if (reflectionEssay) {
+        reflectionEssay.addEventListener('input', updateEssayCounter);
+      }
+
+      // LocalStorage Autosave Functionality
+      const statusText = document.getElementById('save-status-text');
+      const statusDot = document.getElementById('save-status-dot');
+
+      function saveAllData() {
+        const data = {};
+        // Text, date, textarea
+        const inputs = document.querySelectorAll('input:not([type="radio"]):not([type="checkbox"]), textarea');
+        inputs.forEach(el => {
+          if (el.name) data[el.name] = el.value;
+        });
+
+        // Radios
+        const radios = document.querySelectorAll('input[type="radio"]');
+        radios.forEach(r => {
+          if (r.checked) data[r.name] = r.value;
+        });
+
+        // Checkboxes
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach(c => {
+          if (c.name) data[c.name] = c.checked;
+        });
+
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+          if (statusText && statusDot) {
+            statusDot.className = 'w-2 h-2 rounded-full bg-emerald-500 inline-block animate-pulse';
+            statusText.textContent = 'Saved to browser';
+            setTimeout(() => {
+              statusDot.className = 'w-2 h-2 rounded-full bg-emerald-500 inline-block';
+            }, 1000);
+          }
+        } catch (e) {
+          console.warn('Storage unavailable', e);
+        }
+      }
+
+      function loadSavedData() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) return;
+          const data = JSON.parse(raw);
+
+          // Populate inputs and textareas
+          Object.keys(data).forEach(key => {
+            const val = data[key];
+            const textEl = document.querySelector(`[name="${key}"]`);
+            if (textEl) {
+              if (textEl.type === 'checkbox') {
+                textEl.checked = Boolean(val);
+              } else if (textEl.type === 'radio') {
+                const radio = document.querySelector(`input[name="${key}"][value="${val}"]`);
+                if (radio) radio.checked = true;
+              } else {
+                textEl.value = val;
+              }
+            }
+          });
+
+          // Resize all textareas after loading
+          allTextareas.forEach(ta => autoResizeTextarea(ta));
+          updateEssayCounter();
+        } catch (e) {
+          console.error('Error loading saved workbook data:', e);
+        }
+      }
+
+      // Event listeners for all inputs & checkboxes
+      document.querySelectorAll('input').forEach(input => {
+        input.addEventListener('change', saveAllData);
+        input.addEventListener('input', saveAllData);
+      });
+
+      // Clear Modal Handling
+      const clearBtn = document.getElementById('clear-btn');
+      const resetModal = document.getElementById('reset-modal');
+      const cancelResetBtn = document.getElementById('cancel-reset-btn');
+      const confirmResetBtn = document.getElementById('confirm-reset-btn');
+
+      if (clearBtn && resetModal) {
+        clearBtn.addEventListener('click', () => resetModal.classList.remove('hidden'));
+        cancelResetBtn.addEventListener('click', () => resetModal.classList.add('hidden'));
+        confirmResetBtn.addEventListener('click', () => {
+          localStorage.removeItem(STORAGE_KEY);
+          document.querySelectorAll('input:not([type="radio"]):not([type="checkbox"]), textarea').forEach(el => el.value = '');
+          document.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(el => el.checked = false);
+          allTextareas.forEach(ta => autoResizeTextarea(ta));
+          updateEssayCounter();
+          resetModal.classList.add('hidden');
+          if (statusText) statusText.textContent = 'All responses cleared';
+        });
+      }
+
+      // Initial load
+      window.addEventListener('DOMContentLoaded', () => {
+        loadSavedData();
+      });
+      loadSavedData();
+
+      // Ensure proper sizing prior to printing
+      window.addEventListener('beforeprint', () => {
+        allTextareas.forEach(ta => autoResizeTextarea(ta));
+      });
+    })();
+  </script>
+</body>
+</html>
